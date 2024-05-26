@@ -1,0 +1,5 @@
+DATABASE_URL=mysql+pymysql://user:password@localhost/todo_db
+**Замените user и password на ваше имя пользователя и пароль для MySQL.
+DB_USER=user
+DB_PASSWORD=password
+DB_NAME=name_db
