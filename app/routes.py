@@ -38,7 +38,7 @@ def get_tasks():
 @bp.route('/tasks/<int:id>', methods=['GET'])
 def get_task(id):
     """Возвращает задачу по ее идентификатору 'id'."""
-    task = Task.query.get(id)
+    task = db.session.get(Task, id)
     if task:
         return task_schema.jsonify(task), 200
     else:
@@ -48,7 +48,7 @@ def get_task(id):
 @bp.route('/tasks/<int:id>', methods=['PUT'])
 def update_task(id):
     """Обновляет задачу по ее идентификатору 'id'."""
-    task = Task.query.get(id)
+    task = db.session.get(Task, id)
     if task:
         title = request.json.get('title', task.title)
         description = request.json.get('description', task.description)
@@ -66,7 +66,7 @@ def update_task(id):
 @bp.route('/tasks/<int:id>', methods=['DELETE'])
 def delete_task(id):
     """Удаляет задачу по ее идентификатору 'id'."""
-    task = Task.query.get(id)
+    task = db.session.get(Task, id)
     if task:
         task_title = task.title
         db.session.delete(task)

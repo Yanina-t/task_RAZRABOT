@@ -91,8 +91,7 @@ def test_update_task(client, init_database):
 
     response = client.put(f'/tasks/{task.id}', json={"title": "Updated Task", "description": "Updated description"})
     assert response.status_code == 200
-
-    updated_task = Task.query.get(task.id)
+    updated_task = db.session.get(Task, task.id)
     assert updated_task.title == "Updated Task"
     assert updated_task.description == "Updated description"
 
